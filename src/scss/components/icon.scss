@@ -1,0 +1,62 @@
+/**
+ * 图标
+ */
+.icon{
+	display: inline-block;
+	background: url(../images/redm_sprites.png) no-repeat;
+	background-size: 4rem 4rem;
+}
+
+.icon-share{
+	display: inline-block;
+	width: .18rem;
+	height: .19rem;
+	background: url(../images/share.png) no-repeat left top;
+	background-size: contain;
+}
+
+.icon-look{
+	display: inline-block;
+	width: .29rem;
+	height: .18rem;
+	background: url(../images/look.png) no-repeat left top;
+	background-size: contain;
+}
+
+.icon-like{
+	display: inline-block;
+	width: .21rem;
+	height: .18rem;
+	background: url(../images/like-hot.png) no-repeat left top;
+	background-size: contain;
+}
+
+.icon-arrow-right{
+	display: inline-block;
+	width: .09rem;
+	height: .17rem;
+	background: url(../images/arrow-right.png) no-repeat left top;
+	background-size: contain;
+}
+
+.icon-like-active{
+	display: inline-block;
+	width: .21rem;
+	height: .18rem;
+	background: url(../images/like-hot-active.png) no-repeat left top;
+	background-size: contain;
+}
+
+.icon-hot-arrow-right{
+	display: inline-block;
+	width: .12rem;
+	height: .21rem;
+	background: url(../images/hot-list-arrow-right.png) no-repeat left top;
+	background-size: contain;
+}
+
+.icon-tick{
+	display: inline-block;
+	background: url(../images/redm_sprites.png) no-repeat;
+	background-size: 4rem 4rem;
+}

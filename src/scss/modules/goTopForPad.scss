@@ -1,0 +1,41 @@
+@media screen and (min-width: 768px){
+    .red-page.mobile{
+        .go-top{
+            width: 0.43rem;
+            height: 0.43rem;
+            background: url(../images/gotopbg.png) no-repeat center center;
+            background-size: 100% auto;
+
+            p{
+                &.count{
+                    span{
+                        width: .36rem;
+                        font-size: .1rem;
+                        line-height: 1;
+
+                        &:first-child{
+                            padding-bottom: .05rem;
+                        }
+
+                        &:last-child{
+                            padding-top: .05rem;
+                        }
+                    }
+                }
+            }
+            
+            .back{
+                width: .43rem;
+                height: .43rem;
+            }
+
+            .icon-arrow-up{
+                background: url(../images/arrowup.png) no-repeat center center;
+                width: .2rem;
+                height: .3rem;
+                background-size: 100% auto;
+                margin: -.15rem 0 0 -.1rem;
+            }
+        }
+    }
+}

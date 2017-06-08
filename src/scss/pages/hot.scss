@@ -1,0 +1,23 @@
+@import '../variable/color';
+@import '../mixins/all-mixin';
+
+// 页面布局
+@import '../layout/width_640';
+
+// 价格说明
+@import '../modules/priceMsg';
+
+// 回到顶部按钮
+@import '../modules/goTop';
+
+// 尾部闪购logo
+@import '../modules/footerLogo';
+
+// 尾部广告
+@import '../modules/adver';
+
+// 底部悬浮导航
+@import '../modules/footerNav';
+
+// 活动模块
+@import '../modules/hotItem';

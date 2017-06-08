@@ -1,0 +1,181 @@
+.act-item{
+	position: relative;
+	display: block;
+	height: 3.1rem;
+	// height: 2.53rem;
+	overflow: hidden;
+	background: #fff;
+
+	&:last-child{
+		margin-bottom: 0;
+	}
+
+	.icon-tick{
+		width: 0.22rem;
+		height: 0.22rem;
+		position: absolute;
+		left: 0.1rem;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		background-size: 4rem 4rem;
+		background-position: 0 -1.04rem;
+	}
+
+	.attention-msg{
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		font-size: 0.18rem;
+		color: #fff;
+		line-height: 0.28rem;
+		padding: 0 0.15rem;
+		background: rgba(0, 0, 0, 0.7);
+		-webkit-transition: opacity 1s linear;
+		transition: opacity 1s linear;
+	}
+
+	.act-detail{
+		position: absolute;
+		left: 0.15rem;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		background: rgba(0, 0, 0, 0.4);
+		width: 2.36rem;
+		padding: 0.1rem 0.1rem 0.4rem 0.1rem;
+		-webkit-box-sizing:border-box;
+		box-sizing:border-box;
+
+		.tag{
+			color: #fff;
+			position: absolute;
+			left: 50%;
+			bottom: -0.28rem;
+			border: 1px solid #f9384e;
+			border-radius: 0.04rem;
+			padding: 0.02rem;
+			line-height: normal;
+			font-size: 0;
+			-webkit-transform: rotate(-8deg) translateX(-50%);
+			transform: rotate(-8deg) translateX(-50%);
+
+			span{
+				display: inline-block;
+				background: #f9384e;
+				padding: 0 0.06rem;
+				font-weight: lighter;
+				font-size: 0.17rem;
+				white-space: nowrap;
+				display: -webkit-box;
+				display: -moz-box;
+				display: box;
+				-webkit-box-pack: center;
+				-moz-box-pack: center;
+				-webkit-box-align: center;
+				-moz-box-align: center;
+			    border-radius: 0.04rem;
+			    position: relative;
+			}
+		}
+
+		.explain{
+			font-size: 0.2rem;
+			color: #fff;
+			line-height: 0.3rem;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.detail-con{
+			position: relative;
+			border: 0.02rem solid #fff;
+			border-top: none;
+			-webkit-box-sizing:border-box;
+			box-sizing:border-box;
+
+			p{
+				text-align: center;
+			}
+		}
+
+		.icon-tick{
+			width: 0.22rem;
+			height: 0.22rem;
+			position: absolute;
+			left: 0.1rem;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			background-size: 4rem 4rem;
+			background-position: 0 -1.04rem;
+		}
+
+		.commercial-logo{
+			margin-bottom: 0.26rem;
+			width: 2.16rem;
+			height: 0.7rem;
+			position: relative;
+
+			img{
+				width: 1.55rem;
+				height: 0.5rem;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				-webkit-transform: translate(-50%, -50%);
+				-ms-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+			}
+		}
+
+		.time{
+			font-size: 0.18rem;
+			color: #fff;
+			display: -ms-box;
+			display: -webkit-box;
+			display: box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			position: absolute;
+			width: 100%;
+
+			.line{
+				border-top: 0.02rem solid #fff;
+				-ms-box-flex: 1;
+				-webkit-box-flex: 1;
+				box-flex: 1;
+				-ms-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+
+			.time-text{
+				padding: 0 0.1rem;
+				line-height: normal;
+				font-size: 0.2rem;
+				-webkit-transform: translateY(-50%);
+				transform: translateY(-50%);
+				padding-left: 0.37rem;
+				position: relative;
+			}
+		}
+
+		.price{
+			font-size: 0.22rem;
+			color: #fff;
+			border-bottom: 1px solid #fff;
+			line-height: normal;
+			padding-bottom: 0.1rem;
+			padding-top: 0.16rem;
+			margin: 0 0.07rem;
+
+			span{
+				font-size: 0.32rem;
+				font-weight: bold;
+			}
+		}
+	}
+}

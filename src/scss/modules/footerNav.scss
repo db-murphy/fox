@@ -1,0 +1,37 @@
+.footer-nav{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	background-color: #f1f1f1;
+	@include display-flex();
+	z-index: 120;
+
+	li{
+		@include flex(1);
+		height: 100%;
+		position: relative;
+
+		a{
+			display: block;
+			padding-top: .55rem;
+			padding-bottom: .11rem;
+			line-height: 1;
+			font-size: .18rem;
+			text-align: center;
+			color: #303030;
+		}
+
+		img{
+			position: absolute;
+			height: .37rem;
+			left: 50%;
+			top: .11rem;
+			@include translate(-50%, 0);
+		}
+
+		&.active a{
+			color: #c81522;
+		}
+	}
+}

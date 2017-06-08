@@ -1,0 +1,54 @@
+.showgoods-item{
+	display: block;
+	height: 2.53rem;
+	position: relative;
+	overflow: hidden;
+	background: #fff;
+
+	.act-detail{
+		position: absolute;
+		width: 3.41rem;
+		// height: 1.34rem;
+		left: 50%;
+		@include translate(-50%, 0);
+		background-color: rgba(0, 0, 0, .3);
+		bottom: 0;
+		padding-top: .05rem;
+		padding-bottom: .1rem;
+		@include box-sizing(border-box);
+		font-size: 0;
+		text-align: center;
+
+		.brand-logo{
+			height: .59rem;
+			font-size: 0;
+
+			img{
+				display: block;
+				height: .59rem;
+				width: 1.84rem;
+				margin: 0 auto;
+			}
+		}
+
+		p{
+			font-size: .25rem;
+			color: #fff;
+			text-align: center;
+			line-height: 1;
+			@include text-overflow();
+			padding: .03rem 0 .08rem 0;
+		}
+
+		.preferential-msg{
+			display: inline-block;
+			font-size: .18rem;
+			padding: .05rem .17rem;
+			line-height: 1;
+			background-color: #c81522;
+			border-radius: .1rem;
+			color: #fff;
+			@include text-overflow();
+		}
+	}
+}

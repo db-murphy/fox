@@ -1,0 +1,18 @@
+.coupons-content{
+	.act-coupons-inner{
+		padding: .07rem .16rem .26rem .26rem;
+	}
+
+	.coupon-row{
+		@include clearfix();
+	}
+
+	.coupon-col{
+		width: 50%;
+		margin-bottom: .16rem;
+	}
+
+	.coupon{
+		margin-right: .08rem;
+	}
+}

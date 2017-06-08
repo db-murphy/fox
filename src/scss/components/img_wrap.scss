@@ -1,0 +1,43 @@
+/**
+ * 图片包裹
+ */
+.img-wraper{
+	width: 100%;
+	height: 100%;
+
+	img{
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	&.default-type1{
+		background: url(../images/gd_common_default.png) no-repeat center center;
+		background-size: 1.36rem auto;
+	}
+
+	&.default-type2{
+		background: url(../images/common_default.jpg) no-repeat center center;
+		background-size: 1rem auto;
+	}
+
+	&.default-type3{
+		background: url(../images/common_default.jpg) no-repeat 4rem center;
+		background-size: 1.36rem auto;
+	}
+}
+
+.default-type1{
+	background: url(../images/gd_common_default.png) no-repeat center center;
+	background-size: 1.36rem auto;
+}
+
+.default-type2{
+	background: url(../images/common_default.jpg) no-repeat center center;
+	background-size: 1rem auto;
+}
+
+.default-type3{
+	background: url(../images/common_default.jpg) no-repeat 4rem center;
+	background-size: 1.36rem auto;
+}

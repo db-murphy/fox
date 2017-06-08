@@ -1,0 +1,7 @@
+@mixin center($position){
+	position: $position;
+	left: 50%;
+	top: 50%;
+
+	@include translate(-50%, -50%);
+}

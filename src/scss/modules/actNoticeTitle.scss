@@ -1,0 +1,35 @@
+.start-remind{
+	font-size: 0;
+	padding: .3rem .7rem;
+	padding-bottom: .1rem;
+
+	.remind-inner{
+		height: .2rem;
+		position: relative;
+	}
+
+	p{
+		font-size: .2rem;
+		display: inline-block;
+		line-height: 1;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		white-space: nowrap;
+		padding: 0 .18rem;
+		background: #fff;
+		z-index: 11;
+		color: #666666;
+	}
+
+	span{
+		position: absolute;
+		z-index: 10;
+		width: 100%;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+}

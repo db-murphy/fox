@@ -1,0 +1,48 @@
+@import '../variable/color';
+@import '../mixins/all-mixin';
+@import '../layout/full_screen';
+
+// 页面布局
+@import '../layout/width_640';
+
+// 轮播图模块
+@import '../modules/indexSlider';
+
+// 活动列表
+@import '../modules/redActList';
+
+// 商品外露列表
+@import '../modules/actGoodsList';
+
+// 广告
+@import '../modules/actAd';
+
+// 活动模块
+@import '../modules/actItem';
+
+// 外露商品的活动图
+@import '../modules/showgoodsItem';
+
+// 尾部闪购logo
+@import '../modules/footerLogo';
+
+// 价格提示信息
+@import '../modules/priceMsg';
+
+// 尾部广告
+@import '../modules/adver';
+
+// 回到顶部按钮
+@import '../modules/goTop';
+
+// 回到顶部按钮pad适配
+@import '../modules/goTopForPad';
+
+// 底部悬浮导航
+@import '../modules/footerNav';
+
+// 自定义区域
+@import '../modules/flexible-area';
+
+// 筛选
+@import '../modules/uRedFilter';

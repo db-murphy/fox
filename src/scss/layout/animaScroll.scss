@@ -1,0 +1,22 @@
+.body_overflow {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+}
+.anima-scroll-page {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+.anima-scroll-view {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #fff;
+    top: 0;
+    overflow: hidden;
+}

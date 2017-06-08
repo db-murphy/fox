@@ -1,0 +1,90 @@
+/**
+ * 1px 边框
+ */
+@mixin border1px-common() {
+	position: absolute;
+	content: '';
+	z-index: 10;
+}
+
+.border-bottom{
+	position: relative;
+
+	&::after{
+		bottom: -1px;
+		left: 0;
+		height: 1px;
+		width: 100%;
+		@include scaleY(.5);
+		@include border1px-common();
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+	}
+}
+.border-top{
+	position: relative;
+
+	&::before{
+		top: -1px;
+		left: 0;
+		height: 1px;
+		width: 100%;
+		@include scaleY(.5);
+		@include border1px-common();
+		border-top-width: 1px;
+		border-top-style: solid;
+	}
+}
+.border-right{
+	position: relative;
+
+	&::after{
+		@include border1px-common();
+		border-right-width: 1px;
+		border-right-style: solid;
+		right: 0;
+		width: 1px;
+		top: 0;
+		height: 100%;
+		@include scaleX(.5);
+	}
+}
+.border-left{
+	position: relative;
+
+	&::after{
+		left: 0;
+		top: 0;
+		width: 1px;
+		height: 100%;
+		@include scaleX(.5);
+		@include border1px-common();
+		border-left-width: 1px;
+		border-left-style: solid;
+	}
+}
+
+/**
+ * 边框颜色
+ */
+.dbcdddddd::after, .dbcdddddd::before{
+	border-color: $c9;
+}
+.dbcefefef::after, .dbcefefef::before{
+	border-color: $c10;
+}
+.dbcf6f6f6::after, .dbcf6f6f6::before{
+	border-color: $c7;
+}
+.dbcf4f4f4::after, .dbcf4f4f4::before{
+	border-color: $c14;
+}
+.dbcdadada::after, .dbcdadada::before{
+	border-color: $c18;
+}
+.dbcd5d5d5::after, .dbcbdrd5d5d5::before{
+	border-color: $c19;
+}
+.dbcf0f0f0::after, .dbcf0f0f0::before{
+	border-color: $c20;
+}

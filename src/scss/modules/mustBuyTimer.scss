@@ -1,0 +1,48 @@
+.seckill-timer{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: .24rem;
+    position: relative;
+
+    span{
+        height: .24rem;
+        line-height: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        float: left;
+        display: -webkit-box;
+        display: -moz-box;
+        -webkit-box-pack: center;
+        -moz-box-pack: center;
+        -webkit-box-align: center;
+        -moz-box-align: center;
+
+        &.number{
+            width: .26rem;
+            height: .3rem;
+            text-align: center;
+            color: #fff;
+            font-size: .19rem;
+            background: #000 url(../images/coutdownborder.png) no-repeat left top;
+            background-size: 100% 100%;
+            padding-top: .02rem;
+            border-radius: .02rem;
+        }
+    }
+
+    .colon{
+        width: .12rem;
+        height: .3rem;
+        text-align: center;
+        font-size: .18rem;
+        margin-top: -0.01rem;
+    }
+
+    .number-box{
+        width: .26rem;
+        height: .3rem;
+        float: left;
+    }
+}
