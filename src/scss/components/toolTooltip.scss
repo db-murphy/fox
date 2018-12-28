@@ -1,0 +1,14 @@
+.el-tooltip__popper.tool-tooltip{
+	&.el-tooltip__popper{
+		background-color: #535353;
+		box-shadow: 5px 0px 12px rgba(0, 0, 0, .5);
+
+		&[x-placement="right"] .popper__arrow::after{
+			border-right-color: #535353;
+		}
+
+		&[x-placement="bottom"] .popper__arrow::after{
+			border-bottom-color: #535353;
+		}
+	}
+}

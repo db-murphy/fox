@@ -1,19 +1,20 @@
 <template>
 	<div class="zf-module-tick">
 		<div class="time-wrap">
-            <span class="day num one">{{day[0]}}</span>
-            <span class="day num">{{day[1]}}</span>
-            <span class="txt">天</span>
-            <span class="hours num one">{{hour[0]}}</span>
-            <span class="hours num">{{hour[1]}}</span>
-            <span class="txt">时</span>
-            <span class="min num one">{{min[0]}}</span>
-            <span class="min num">{{min[1]}}</span>
-            <span class="txt">分</span>
-            <span class="sec num one">{{sec[0]}}</span>
-            <span class="sec num">{{sec[1]}}</span>
-            <span class="txt">秒</span>
-            <span v-if="mdata.showMsec" class="ms num">{{ms}}</span>
+            <span class="day num one" :style="[numStyle, oneStyle]">{{day[0]}}</span>
+            <span class="day num" :style="numStyle">{{day[1]}}</span>
+            <span class="txt" :style="txtStyle">天</span>
+            <span class="hours num one" :style="[numStyle, oneStyle]">{{hour[0]}}</span>
+            <span class="hours num" :style="numStyle">{{hour[1]}}</span>
+            <span class="txt" :style="txtStyle">时</span>
+            <span class="min num one" :style="[numStyle, oneStyle]">{{min[0]}}</span>
+            <span class="min num" :style="numStyle">{{min[1]}}</span>
+            <span class="txt" :style="txtStyle">分</span>
+            <span class="sec num one" :style="[numStyle, oneStyle]">{{sec[0]}}</span>
+            <span class="sec num" :style="numStyle">{{sec[1]}}</span>
+            <span class="txt" :style="txtStyle">秒</span>
+            <span v-if="mdata.showMsec" class="ms num" :style="numStyle">{{ms}}</span>
+            <span>{{this.mdata.naturalHeight}}/{{this.mdata.naturalWidth}}</span>
         </div>
 	</div>
 </template>
@@ -51,17 +52,50 @@
 				}else{
 					return this.mdata.endTime - date.getTime();
 				}
+			},
+
+			numStyle() {
+				return {
+					width: this.mdata.width * (this.mdata.naturalNumWidth/this.mdata.naturalWidth) + 'px',
+					lineHeight: this.mdata.height + 'px',
+					fontSize: this.mdata.width * (this.mdata.naturalNumFontSize/this.mdata.naturalWidth) + 'px',
+					borderRadius: this.mdata.width * (this.mdata.naturalNumBorderRadius/this.mdata.naturalWidth) + 'px',
+					color: this.mdata.numColor,
+					backgroundColor: this.mdata.numbg
+				}
+			},
+
+			txtStyle() {
+				return {
+					fontSize: this.mdata.width * (this.mdata.naturalTxtFontSize/this.mdata.naturalWidth) + 'px',
+					lineHeight: this.mdata.height + 'px',
+					width: this.mdata.width * (this.mdata.naturalTxtWidth/this.mdata.naturalWidth) + 'px',
+					color: this.mdata.txtColor
+				}
+			},
+
+			oneStyle() {
+				return {
+					marginRight: this.mdata.width * (this.mdata.marginRight/this.mdata.naturalWidth) + 'px'
+				}
 			}
 		},
 
 		methods: {
 			timeChange() {
+				if(this.getDisTime < 0) {
+					return this.$message({
+						showClose: true,
+						message: '时间选择不合法, 请重新选择',
+						type: 'error'
+			        });
+				}
 				this.tick._refresh(this.getDisTime);
 			}
 		},
 
 		components: {
-			
+
 	    },
 
 	    mounted() {
@@ -104,7 +138,7 @@
 		z-index: 1;
 
 		.time-wrap{
-            height: 48px;
+            height: 100%;
             text-align: center;
             font-size: 0;
             width: 100%;
@@ -115,30 +149,18 @@
 	        }
 
 	        .num{
-	            width: 30px;
 	            background-color: #000;
-	            border-radius: 4px;
 	            text-align: center;
-	            line-height: 48px;
-	            color: #fff;
-	            font-size: 37px;
+	            height: 100%;
 	        }
 
 	        .txt{
-	            color: #fff;
-	            font-size: 21px;
-	            line-height: 48px;
-	            height: 48px;
-	            width: 25px;
+	            height: 100%;
 	        }
 
 	        .num.ms{
 	            background-color: #000;
 	            color: #fff;
-	        }
-
-	        .one{
-	        	margin-right: 2px;
 	        }
         }
 	}

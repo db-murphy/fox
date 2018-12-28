@@ -1,6 +1,6 @@
 <template>
 	<div class="zf-switch">
-		<el-switch v-model="switchval" @change="_change" :width="40" on-text="" on-color="#1b83fb" off-color="#3b3b3b" off-text=""></el-switch>
+		<el-switch v-model="switchval" @change="_change" :width="40" active-text="" active-color="#1b83fb" inactive-color="#3b3b3b" inactive-text=""></el-switch>
 	</div>
 </template>
 
@@ -22,6 +22,10 @@
 		methods: {
 			_change() {
 				this.$emit('switchChange', this.switchval);
+			},
+
+			_switchValChange() {
+				this.switchval = this.switchVal;
 			}
 		},
 
@@ -31,6 +35,10 @@
 
 		created() {
 	        
+	    },
+
+	    watch: {
+	    	'switchVal': '_switchValChange'
 	    }
 	};
 </script>
@@ -44,10 +52,11 @@
 			border-color: #535353 !important;
 			height: 21px;
 
-			// .el-switch__button{
-			// 	top: 50%;
-			// 	@include translate(0, -50%);
-			// }
+			.el-switch__button{
+				width: 20px;
+				height: 20px;
+				top: 0px;
+			}
 		}
 	}
 </style>

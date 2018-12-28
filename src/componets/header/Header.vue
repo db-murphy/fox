@@ -15,7 +15,7 @@ export default {
     props: {
     	appName: {
     		type: String,
-    		default: '野兔'
+    		default: '迅狐'
     	}
     },
 
@@ -23,9 +23,10 @@ export default {
     	return {
     		dialogData: {
     			dialogVisible: false,
-    			title: '新建',
+    			title: '新建文档',
                 width: 750,
-                height: 750
+                height: 750,
+                name: '新建文档'
     		}
     	}
     },
@@ -37,7 +38,7 @@ export default {
     	},
 
     	_ok(val) {
-            let height = val.height;
+            let height = parseFloat(val.height);
             let stageHeight = $('.stage-content').height();
             let overFlow = false;
 
@@ -46,8 +47,8 @@ export default {
             }
 
             this._addFile({
-                fileName: 'test2',
-                width: val.width,
+                fileName: val.name,
+                width: parseFloat(val.width),
                 height: height,
                 fileSizeOverflow: overFlow,
                 fileBg: {

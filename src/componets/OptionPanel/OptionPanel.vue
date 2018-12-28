@@ -8,9 +8,6 @@
 
 <script>
 	import { mapGetters } from 'vuex';
-	import MapArea from './MapArea/MapArea.vue';
-	import SelectPanel from './SelectPanel/SelectPanel.vue';
-	import ScalePanel from './ScalePanel/ScalePanel.vue';
 	import ModulesPanel from './ModulesPanel/ModulesPanel.vue';
 
 	let _this;
@@ -25,9 +22,6 @@
 			...mapGetters(['currentTool'])
 		},
 		components: {
-			MapArea,
-			SelectPanel,
-			ScalePanel,
 			ModulesPanel
 		},
 		mounted() {
@@ -37,8 +31,11 @@
 </script>
 
 <style lang="scss">
+	@import '../../scss/mixins/all-mixin';
+
 	.option-panel{
-		height: 32px;
+		@include box-sizing(border-box);
+		height: 34px;
 		background-color: #535353;
 		border-top: 1px solid #6a6a6a;
 		border-bottom: 1px solid #282828;

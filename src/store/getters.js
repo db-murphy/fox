@@ -5,7 +5,7 @@ const currentTool = (state) => {
 		stageScale: 'ScalePanel',
 		addModules: 'ModulesPanel'
 	}
-	
+
   	return {
   		optionPanleName: toolData[state.toolName],
   		toolName: state.toolName
@@ -14,7 +14,11 @@ const currentTool = (state) => {
 
 const getModules = (state) => {
 	let currentFile = getCurrentFileById(state);
-	let modules = currentFile.modules;
+	let modules = null;
+
+	if(currentFile) {
+		modules = currentFile.modules;
+	}
 
 	return modules;
 }
@@ -39,7 +43,6 @@ const getModulesById = (state) => {
 }
 
 const getCurrentFileById = (state) => {
-	let fileId = state.currentFileId;
 	let files = state.files;
 	let currentId = state.currentFileId;
 
@@ -58,7 +61,27 @@ const getCurrentFileIsOverflow = (state) => {
 	if(currentFile) {
 		return currentFile.fileSizeOverflow;
 	}
-	
+
+	return null;
+}
+
+const getCurrentFileIsOverflowX = (state) => {
+	let currentFile = getCurrentFileById(state);
+
+	if(currentFile) {
+		return currentFile.fileSizeOverflowx;
+	}
+
+	return null;
+}
+
+const getCurrentFileIsOverflowY = (state) => {
+	let currentFile = getCurrentFileById(state);
+
+	if(currentFile) {
+		return currentFile.fileSizeOverflowy;
+	}
+
 	return null;
 }
 
@@ -75,17 +98,28 @@ const getCursorDefault = (state) => {
 }
 
 const getModuleMinHeight = (state) => {
-	return state.moduleMinHeight;
+	let module = getModulesById(state);
+
+	if(module) {
+		return module.minHeight;
+	}
+	return 0;
 }
 
 const getModuleMinWidth = (state) => {
-	return state.moduleMinWidth;
+	let module = getModulesById(state);
+
+	return module? module.minWidth: 0;
 }
 
 const getCurrentModuleId = (state) => {
 	let currentFile = getCurrentFileById(state);
 
-	return currentFile.currentModuleId;
+	if(currentFile) {
+		return currentFile.currentModuleId;
+	}
+
+	return '';
 }
 
 const inputFocusUpdate = (state) => {
@@ -98,14 +132,22 @@ const getCurrentFileId = (state) => {
 
 const getCurrentModuleLoading = (state) => {
 	let currentModule = getModulesById(state);
-	
+
 	return currentModule? currentModule.loading : false;
 }
 
 const getCurrentModuleName = (state) => {
 	let currentModule = getModulesById(state);
-	
+
 	return currentModule? currentModule.moduleName : false;
+}
+
+const showVersionMsg = (state) => {
+	return state.showVersionMsg;
+}
+
+const version = () => {
+	return state.version;
 }
 
 export default {
@@ -122,6 +164,10 @@ export default {
 	getAllFiles,
 	getCurrentFileId,
 	getCurrentFileIsOverflow,
+	getCurrentFileIsOverflowX,
+	getCurrentFileIsOverflowY,
 	getCurrentModuleLoading,
-	getCurrentModuleName
+	getCurrentModuleName,
+	showVersionMsg,
+	version
 }

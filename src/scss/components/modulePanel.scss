@@ -1,0 +1,63 @@
+.modules-panel{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	padding-left: 8px;
+	@include box-sizing(border-box);
+
+	ul{
+		list-style: none;
+		@include clearfix();
+		
+		li{
+			width: 30px;
+			height: 22px;
+			float: left;
+			border-radius: 3px;
+			@include box-sizing(border-box);
+			position: relative;
+			margin-right: 5px;
+			overflow: hidden;
+
+			.inner{
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				@include box-sizing(border-box);
+				border-radius: 3px;
+			}
+
+			&.hover{
+				box-shadow: 0px 1px 0px #636363;
+
+				.inner{
+					border: 1px solid #2b2b2b;
+					background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#757575), to(#636363));
+					box-shadow: 0px 1px 0px #636363;
+				}
+			}
+
+			&.active{
+				box-shadow: 0px 1px 0px #636363;
+
+				.inner{
+					border: 1px solid #2b2b2b;
+					background: #393939;
+					box-shadow: 0px 2px 2px #2b2b2b inset;
+				}
+			}
+		}
+
+		i{
+			font-size: 14px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			@include translate(-50%, -50%);
+		}
+	}
+}

@@ -1,8 +1,8 @@
 <template>
 	<div class="input-txt-left">
-		<label class="pr7" :class="{pl11: hasPL}">{{inputName}}</label>
+		<label class="pr7 ccacaca" :class="{pl11: hasPL}" :style="{'width': labelWidth, 'text-align': align}">{{inputName}}</label>
 		<div class="wrap" :style="{width: inputWidth + 'px'}">
-			<zf-input :inputVal="inputVal" @zfblur="_blur"></zf-input>
+			<zf-input :inputVal="inputVal" @inputSubmit="_inputSubmit" @zfblur="_blur" ref="zfInput" :disabled="disable"></zf-input>
 		</div>
 	</div>
 </template>
@@ -28,13 +28,28 @@
 	    	},
 
 	    	inputVal: {
-	    		
+
+	    	},
+
+	    	labelWidth: {
+	    		type: String,
+	    		default: 'auto'
+	    	},
+
+	    	align: {
+	    		type: String,
+	    		default: 'left'
+	    	},
+
+	    	disable: {
+	    		type: Boolean,
+	    		default: false
 	    	}
 	    },
 
 		data() {
 			return {
-				
+
 			}
 		},
 
@@ -45,6 +60,14 @@
 		methods: {
 			_blur(val) {
 				this.$emit('zfblur', val);
+			},
+
+			setVal(val) {
+				this.$refs.zfInput.setVal(val);
+			},
+
+			_inputSubmit(val) {
+				this.$emit('inputSubmit', val);
 			}
 		},
 
@@ -53,12 +76,14 @@
 		},
 
 		mounted() {
-			
+
 		}
 	};
 </script>
 
 <style lang="scss">
+	@import '../../scss/mixins/all-mixin';
+
 	.input-txt-left{
 		font-size: 0;
 
@@ -71,8 +96,8 @@
 		    vertical-align: middle;
 		    height: 100%;
 		    font-size: 11px;
-		    color: #fff;
 		    line-height: 22px;
+		    @include box-sizing(border-box);
 		}
 
 		.el-input{

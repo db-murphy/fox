@@ -3,7 +3,7 @@
 		<div v-loading="loading" element-loading-text="图片加载中" class="loading-img">
 			<picture-icon v-if="!loading"></picture-icon>
 		</div>
-		<img :src="imgUrl">
+		<img v-if="imgUrl != ''" :src="imgUrl">
 	</div>
 </template>
 
@@ -28,6 +28,10 @@
 			loading: {
 				type: Boolean,
 				default: false
+			},
+			mdata: {
+				type: Object,
+				default: {}
 			}
 		},
 

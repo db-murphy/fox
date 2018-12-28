@@ -48,7 +48,7 @@
 		label{
 			display: inline-block;
 		    font-size: 11px;
-		    color: #fff;
+		    color: #cacaca;
 		    line-height: 1;
 		}
 	}

@@ -1,0 +1,20 @@
+.el-color-picker .el-color-picker__trigger{
+	border-color: transparent;
+
+	&:hover{
+		border-color: #2a2a2a;
+		box-shadow: 0px 1px 0px #636363;
+	}
+}
+
+.line-area{
+	border-bottom: 1px solid #2d2d2d;
+	box-shadow: 0px 1px 0px #636363;
+}
+
+.blur {
+    -webkit-filter: blur(6px);
+       -moz-filter: blur(6px);
+        -ms-filter: blur(6px);
+            filter: blur(6px);
+}

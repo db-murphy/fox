@@ -4,6 +4,9 @@
 .p20{
 	padding: 20px;
 }
+.pr5{
+	padding-right: 5px;
+}
 .pr7{
 	padding-right: 7px;
 }
@@ -28,6 +31,9 @@
 .pb10{
 	padding-bottom: 10px;
 }
+.pb20{
+	padding-bottom: 20px;
+}
 .pt4{
 	padding-top: 4px;
 }
@@ -40,6 +46,11 @@
 .pt20{
 	padding-top: 20px;
 }
+.fz0{font-size: 0px;}
+.fz12{font-size: 12px;}
+.mb10{margin-bottom: 10px;}
+.mt10{margin-top: 10px;}
+.ccacaca{color: #cacaca;}
 .fl{float:left;}
 .fr{float:right;}
 .fn{float:none;}
@@ -47,6 +58,26 @@
 .ac{text-align:center;}
 .ar{text-align:right;}
 .ov{overflow:hidden;}
+.nb{border: none}
+.db{display: block;}
+
+.noselect{
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Chrome/Safari/Opera */
+	-khtml-user-select: none; /* Konqueror */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
+}
+
+.canselect{
+	-webkit-touch-callout: text; /* iOS Safari */
+	-webkit-user-select: text; /* Chrome/Safari/Opera */
+	-khtml-user-select: text; /* Konqueror */
+	-moz-user-select: text; /* Firefox */
+	-ms-user-select: text; /* Internet Explorer/Edge */
+	user-select: text;
+}
 
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
 .clearfix{*zoom: 1;}

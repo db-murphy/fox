@@ -1,0 +1,199 @@
+@-webkit-keyframes circleAnimaScaleOne {
+    0% {
+        -webkit-transform: scale(0, 0);
+            -ms-transform: scale(0, 0);
+             -o-transform: scale(0, 0);
+                transform: scale(0, 0);
+        opacity: 1;
+    }
+    50% {
+        -webkit-transform: scale(1, 1);
+            -ms-transform: scale(1, 1);
+             -o-transform: scale(1, 1);
+                transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+@keyframes circleAnimaScaleOne {
+    0% {
+        -webkit-transform: scale(0, 0);
+            -ms-transform: scale(0, 0);
+             -o-transform: scale(0, 0);
+                transform: scale(0, 0);
+        opacity: 1;
+    }
+    50% {
+        -webkit-transform: scale(1, 1);
+            -ms-transform: scale(1, 1);
+             -o-transform: scale(1, 1);
+                transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes circleAnimaScaleTwo {
+    0% {
+        -webkit-transform: scale(0, 0);
+            -ms-transform: scale(0, 0);
+             -o-transform: scale(0, 0);
+                transform: scale(0, 0);
+        opacity: 1;
+    }
+    20% {
+        -webkit-transform: scale(0, 0);
+            -ms-transform: scale(0, 0);
+             -o-transform: scale(0, 0);
+                transform: scale(0, 0);
+        opacity: 1;
+    }
+    70% {
+        -webkit-transform: scale(1, 1);
+            -ms-transform: scale(1, 1);
+             -o-transform: scale(1, 1);
+                transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+@keyframes circleAnimaScaleTwo {
+    0% {
+        -webkit-transform: scale(0, 0);
+            -ms-transform: scale(0, 0);
+             -o-transform: scale(0, 0);
+                transform: scale(0, 0);
+        opacity: 1;
+    }
+    20% {
+        -webkit-transform: scale(0, 0);
+            -ms-transform: scale(0, 0);
+             -o-transform: scale(0, 0);
+                transform: scale(0, 0);
+        opacity: 1;
+    }
+    70% {
+        -webkit-transform: scale(1, 1);
+            -ms-transform: scale(1, 1);
+             -o-transform: scale(1, 1);
+                transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+
+.fox-area{
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+/* sku模块 */
+.fox-area .sku-tag.none{
+    display: none;
+}
+.fox-area .sku-tag.sku-tag-right .tag-left{
+    height: 100%;
+    background: url(../img/tag-right.png) no-repeat left top;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.fox-area .sku-tag.sku-tag-right .tag-right{
+    height: 100%;
+    background: url(../img/tag-left.png) no-repeat left top;
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.fox-area .sku-tag.sku-tag-right.no-animation .tag-left{
+    background: url(../img/tag-right-low.png) no-repeat left top;
+    background-size: 100% 100%;
+}
+
+.fox-area .sku-tag.sku-tag-left .tag-left{
+    height: 100%;
+    background: url(../img/tag-left1.png) no-repeat left top;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.fox-area .sku-tag.sku-tag-left .tag-right{
+    height: 100%;
+    background: url(../img/tag-right1.png) no-repeat left top;
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.fox-area .sku-tag.sku-tag-left.no-animation .tag-right{
+    background: url(../img/tag-left-low.png) no-repeat left top;
+    background-size: 100% 100%;
+}
+
+.fox-area .sku-tag .fox-tag-con{
+    background-color: rgba(0, 0, 0, .7);
+    position: relative;
+    height: 100%;
+    white-space: nowrap;
+}
+
+.fox-area .sku-tag .fox-tag-con .price{
+    line-height: inherit;
+    color: #fff;
+}
+
+.fox-area .sku-tag .circle-anima{
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   left: 0;
+   top: 0;
+   z-index: 2;
+}
+
+.fox-area .sku-tag .icon-circle-fff{
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+         -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.fox-area .sku-tag .circle-anima1{
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 1;
+    -webkit-animation-name: circleAnimaScaleOne;
+            animation-name: circleAnimaScaleOne;
+    -webkit-animation-duration: 4s;
+            animation-duration: 4s;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+}
+
+.fox-area .sku-tag .circle-anima2{
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 2;
+    -webkit-animation-name: circleAnimaScaleTwo;
+            animation-name: circleAnimaScaleTwo;
+    -webkit-animation-duration: 4s;
+            animation-duration: 4s;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+}

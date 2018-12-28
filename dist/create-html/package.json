@@ -1,0 +1,11 @@
+{
+  "name": "configdata-to-html",
+  "version": "1.0.1",
+  "description": "config data to transform to html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hxl19900407",
+  "license": "ISC"
+}

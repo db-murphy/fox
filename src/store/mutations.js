@@ -2,14 +2,39 @@ import { set } from 'vue';
 import types from './mutation-types';
 import getter from './getters';
 import Utils from '../utils/helper';
+import $ from 'jquery';
 
 export default {
 	[types.TOOL_SWITCH] (state, { toolName }) {
 		setToolName(state, toolName);
 	},
 
+	[types.ALIGN] (state, type) {
+		setAlign(state, type);
+	},
+
 	[types.CREATE_MODULE] (state, { type }) {
 		createModule(state, type);
+	},
+
+	[types.DEL_HISTORY] (state, id) {
+		delHistory(state, id);
+	},
+
+	[types.SET_SKUTAG_PRICE] (state, data) {
+		setSkuTagPrice(state, data);
+	},
+
+	[types.SHOW_VERSION_MSG] (state, b) {
+		state.showVersionMsg = b;
+	},
+
+	[types.SAVE_HISTORY] (state) {
+		saveHistory(state);
+	},
+
+	[types.RETURN] (state) {
+		_return(state);
 	},
 
 	[types.SET_MODULE_BY_ID] (state, val) {
@@ -31,7 +56,10 @@ export default {
 	[types.SET_CURRENT_MODULE_ID] (state, id) {
 		let currentFile = getter.getCurrentFileById(state);
 
-		currentFile.currentModuleId = id;
+		if(currentFile) {
+			currentFile.currentModuleId = id;
+		}
+
 	},
 
 	[types.SET_CURRENT_FILE_ID] (state, id) {
@@ -44,6 +72,10 @@ export default {
 
 	[types.DELETE_FILE] (state, id) {
 		deleteFile(state, id);
+	},
+
+	[types.SET_STAGE_DATA] (state, data) {
+		setStageData(state, data);
 	},
 
 	[types.SET_PICTURE_URL] (state, url) {
@@ -60,6 +92,14 @@ export default {
 
 	[types.UPDATE_FILE_IS_OVERFLOW] (state, _boolean) {
 		updateFileIsOverflow(state, _boolean);
+	},
+
+	[types.UPDATE_FILE_IS_OVERFLOW_X] (state, _boolean) {
+		updateFileIsOverflowx(state, _boolean);
+	},
+
+	[types.UPDATE_FILE_IS_OVERFLOW_Y] (state, _boolean) {
+		updateFileIsOverflowy(state, _boolean);
 	},
 
 	[types.SET_CURRENT_MODULE_LOADING] (state, _boolean) {
@@ -88,6 +128,111 @@ export default {
 
 	[types.SET_HREF] (state, _href) {
 		setHref(state, _href);
+	},
+
+	[types.SET_MODULE_DATA] (state, data) {
+		setModuleData(state, data);
+	}
+}
+
+function setSkuTagPrice(state, {price, moduleId, fileId}) {
+	let files = state.files;
+	let file = null;
+	let _module = null;
+
+	for(var i = 0; i < files.length; i++) {
+		if(files[i].id == fileId) {
+			file = files[i];
+		}
+	}
+
+	if(!file) return;
+
+	let modules = file.modules;
+
+	for(var i = 0; i < modules.length; i++) {
+		if(modules[i].id == moduleId) {
+			_module = modules[i];
+		}
+	}
+
+	if(!_module) return;
+
+	_module.price = price;
+};
+
+function delHistory(state, id) {
+	delete state.history[id];
+}
+
+function saveHistory(state) {
+	// return;
+	let currentFile = getter.getCurrentFileById(state);
+	let currentFileCopy = {};
+
+	if(!currentFile) return;
+	$.extend(true, currentFileCopy, currentFile);
+	state.history[currentFile.id].push(currentFileCopy);
+	if(state.history[currentFile.id].length > 20) {
+		state.history[currentFile.id].shift();
+	}
+}
+
+function _return(state) {
+	// return;
+	let currentFile = getter.getCurrentFileById(state);
+	let currentFileCopy = {};
+
+	if(!currentFile) return;
+
+	if(state.history[currentFile.id].length > 1) {
+		state.history[currentFile.id].pop();
+
+		$.extend(true, currentFile, state.history[currentFile.id][state.history[currentFile.id].length - 1]);
+		currentFile.modules = [];
+
+		var _modules = state.history[currentFile.id][state.history[currentFile.id].length - 1].modules;
+
+		for(var i = 0; i < _modules.length; i++) {
+			var _k = {};
+
+			$.extend(true, _k, _modules[i]);
+			currentFile.modules.push(_k);
+		}
+	}
+}
+
+function setAlign(state, type) {
+	let currentFile = getter.getCurrentFileById(state);
+	let currentModule = getter.getModulesById(state);
+
+	switch(type) {
+		case 'left':
+			currentModule.left = 0;
+			break;
+		case 'centerx':
+			currentModule.left = (currentFile.width - currentModule.width) / 2;
+			break;
+		case 'right':
+			currentModule.left = currentFile.width - currentModule.width;
+			break;
+		case 'top':
+			currentModule.top = 0;
+			break;
+		case 'centery':
+			currentModule.top = (currentFile.height - currentModule.height) / 2;
+			break;
+		case 'down':
+			currentModule.top = currentFile.height - currentModule.height;
+			break;
+	}
+}
+
+function setModuleData(state, data) {
+	let module = getter.getModulesById(state);
+
+	for(var attr in data) {
+		module[attr] = data[attr];
 	}
 }
 
@@ -110,10 +255,18 @@ function showMs(state, _boolean) {
 }
 
 function setTimeEnd(state, time) {
-	let newTime = Utils.timeForMs(time);
+	let newTime = time.getTime();
 	let currentModule = getter.getModulesById(state);
 
 	currentModule.endTime = newTime;
+}
+
+function setStageData(state, data) {
+	let currentFile = getter.getCurrentFileById(state);
+
+	for(var attr in data) {
+		currentFile[attr] = data[attr];
+	}
 }
 
 function setStageTransport(state, _boolean) {
@@ -125,9 +278,10 @@ function setStageTransport(state, _boolean) {
 function setStageColor(state, color) {
 	let currentFile = getter.getCurrentFileById(state);
 
-	currentFile.fileBg.R = color.R;
-	currentFile.fileBg.G = color.G;
-	currentFile.fileBg.B = color.B;
+	// currentFile.fileBg.R = color.R;
+	// currentFile.fileBg.G = color.G;
+	// currentFile.fileBg.B = color.B;
+	currentFile.fileBg.bgColor = color;
 }
 
 function setModuleIndex(state, _boolean) {
@@ -178,7 +332,7 @@ function findPrev(allModules, currentModuleIndex) {
 	if(typeof prevIndex == 'undefined') {
 		return null;
 	}else{
-		return findModuleByIndex(allModules, prevIndex);	
+		return findModuleByIndex(allModules, prevIndex);
 	}
 }
 
@@ -201,7 +355,23 @@ function findNext(allModules, currentModuleIndex) {
 	if(typeof nextIndex == 'undefined') {
 		return null;
 	}else{
-		return findModuleByIndex(allModules, nextIndex);	
+		return findModuleByIndex(allModules, nextIndex);
+	}
+}
+
+function resortModuleIndex(allModules) {
+	let allIndex = [];
+
+	for(var i = 0; i < allModules.length; i++) {
+		allIndex.push(allModules[i].index);
+	}
+
+	allIndex = sortArr(allIndex, 0, allIndex.length-1);
+
+	for(var i = 0; i < allIndex.length; i++) {
+		let _module = findModuleByIndex(allModules, allIndex[i]);
+
+		_module.index = i + 1;
 	}
 }
 
@@ -218,7 +388,7 @@ function findModuleByIndex(allModules, index) {
 function setCurrentModuleLoading(state, _boolean) {
 	let currentModule = getter.getModulesById(state);
 
-	if(!currentModule) return;  
+	if(!currentModule) return;
 	currentModule.loading = _boolean;
 }
 
@@ -226,6 +396,18 @@ function updateFileIsOverflow(state, _boolean) {
 	let currentFile = getter.getCurrentFileById(state);
 
 	currentFile.fileSizeOverflow = _boolean;
+}
+
+function updateFileIsOverflowx(state, _boolean) {
+	let currentFile = getter.getCurrentFileById(state);
+
+	currentFile.fileSizeOverflowx = _boolean;
+}
+
+function updateFileIsOverflowy(state, _boolean) {
+	let currentFile = getter.getCurrentFileById(state);
+
+	currentFile.fileSizeOverflowy = _boolean;
 }
 
 // 删除文件
@@ -270,11 +452,12 @@ function setToolName(state, toolName) {
 // 创建模块
 function createModule(state, type) {
 	let moduleName = {
-		picture: 'Picture',
+		picture: 'PictureCustom',
 		mapArea: 'MapArea',
-		tick: 'Tick'
+		tick: 'Tick',
+		sku: 'Sku'
 	};
-	
+
 	let currentFile = getter.getCurrentFileById(state);
 
 	if(!currentFile) return;
@@ -282,6 +465,8 @@ function createModule(state, type) {
 	const timestamp = Date.now();
 	let _modules = currentFile.modules;
 	let id = timestamp + '';
+	let disX = $('.stage-content').scrollLeft();
+	let disY = $('.stage-content').scrollTop();
 
 	currentFile.currentModuleId = id;
 
@@ -289,46 +474,96 @@ function createModule(state, type) {
 		id: id,
 		type: type,
 		moduleName: moduleName[type],
-		index: _modules.length + 1
+		index: _modules.length + 1,
+		moduleRootFontSize: '100'
 	}
 
 	switch(type) {
 		case 'mapArea':
 			moduleData.width = 500;
 			moduleData.height = 300;
-			moduleData.left = 10;
-			moduleData.top = 100;
+			moduleData.left = 10 + disX;
+			moduleData.top = 100 + disY;
 			moduleData.naturalWidth = 500;
 			moduleData.naturalHeight = 300;
 			moduleData.fixScale = false;
 			moduleData.href = '';
-			moduleData.newTab = false
+			moduleData.linkTransform = {
+				wx: "",
+				m: "",
+				pc: "",
+				rn: "",
+				minapp: ""
+			};
+			moduleData.newTab = false;
+			moduleData.minWidth = 10;
+			moduleData.minHeight = 10;
+			moduleData.maping = {
+				wx: {},
+				m: {},
+				pc: {},
+				rn: {},
+				minapp: {}
+			};
 			break;
 
 		case 'picture':
 			moduleData.width = 500;
 			moduleData.height = 300;
-			moduleData.left = 10;
-			moduleData.top = 100;
+			moduleData.left = 10 + disX;
+			moduleData.top = 100 + disY;
 			moduleData.naturalWidth = 500;
 			moduleData.naturalHeight = 300;
 			moduleData.imgUrl = '';
 			moduleData.lazyLoad = true;
 			moduleData.loading = false;
 			moduleData.fixScale = true;
+			moduleData.minWidth = 50;
+			moduleData.minHeight = 30;
+			break;
+
+		case 'sku':
+			moduleData.width = 260;
+			moduleData.height = 100;
+			moduleData.left = 10 + disX;
+			moduleData.top = 100 + disY;
+			moduleData.naturalWidth = 260;
+			moduleData.naturalHeight = 100;
+			moduleData.fixScale = true;
+			moduleData.minWidth = 86;
+			moduleData.minHeight = 33;
+			moduleData.naturalNumFontSize = 37;
+			moduleData.naturalTagLeftWidth = 55;
+			moduleData.naturalTagRightWidth = 15;
+			moduleData.animaWidth = 70;
+			moduleData.witeIconWidth = 20;
+			moduleData.dir = 'left';
+			moduleData.price = '';
+			moduleData.skuid = '';
 			break;
 
 		case 'tick':
-			moduleData.width = 500;
+			moduleData.width = 380;
 			moduleData.height = 48;
-			moduleData.left = 10;
-			moduleData.top = 100;
-			moduleData.naturalWidth = 500;
+			moduleData.left = 10 + disX;
+			moduleData.top = 100 + disY;
+			moduleData.naturalWidth = 380;
 			moduleData.naturalHeight = 48;
+			moduleData.naturalNumFontSize = 37;
+			moduleData.naturalNumWidth = 30;
+			moduleData.naturalNumBorderRadius = 4;
+			moduleData.naturalTxtFontSize = 21;
+			moduleData.naturalTxtWidth = 25;
+			moduleData.marginRight = 2;
 			moduleData.fixScale = true;
 			moduleData.endTime = 0;
 			moduleData.numberDouble = true;
 			moduleData.showMsec = true;
+			moduleData.txtColor = '#fff';
+			moduleData.numColor = '#fff';
+			moduleData.numbg = '#000';
+			moduleData.minWidth = 50;
+			moduleData.minHeight = 30;
 			break;
 	}
 
@@ -350,12 +585,16 @@ function deleteModule(state) {
 	let currentModuleId = getter.getCurrentModuleId(state);
 	let modues = getter.getModules(state);
 
+	if(!modues) return;
+
 	for(var i = 0; i < modues.length; i++) {
 		if(modues[i].id == currentModuleId) {
 			modues.splice(i, 1);
 			break;
 		}
 	}
+
+	if(modues.length) resortModuleIndex(modues);
 }
 
 function createFile(state, val) {
@@ -371,9 +610,11 @@ function createFile(state, val) {
 	}else{
 		fileData.id = fileId;
 	}
-	
+
 	fileData.width = val.width;
 	fileData.height = val.height;
+	fileData.minWidth = 100;
+	fileData.minHeight = 10;
 	fileData.scale = 1;
 
 	if(val.modules) {
@@ -381,11 +622,13 @@ function createFile(state, val) {
 	}else{
 		fileData.modules = [];
 	}
-	
+
 	fileData.fileBg = val.fileBg;
 	fileData.currentModuleId = 'stage';
-	fileData.history = [];
+	// fileData.history = [];
 	fileData.fileSizeOverflow = val.fileSizeOverflow;
+	fileData.fileSizeOverflowx = val.fileSizeOverflowx;
+	fileData.fileSizeOverflowy = val.fileSizeOverflowy;
 
 	state.files.push(fileData);
 
@@ -394,10 +637,11 @@ function createFile(state, val) {
 	}else{
 		state.currentFileId = fileId;
 	}
+	state.history[fileData.id] = [];
+	saveHistory(state);
 }
 
-function sortArr(arr, s, e)
-{
+function sortArr(arr, s, e){
 	if(e==s)
 	{
 		//就一个
@@ -415,9 +659,9 @@ function sortArr(arr, s, e)
 			return [arr[e], arr[s]];
 		}
 	}
-	
+
 	var c=Math.floor((s+e)/2);
-	
+
 	//左边：s-c
 	var arrL=sortArr(arr, s, c);
 	//右边：c+1-e
@@ -439,7 +683,7 @@ function sortArr(arr, s, e)
 			result=result.concat(arrL);
 			break;
 		}
-		
+
 		if(arrL[0]<arrR[0])
 		{
 			result.push(arrL.shift());
@@ -449,6 +693,6 @@ function sortArr(arr, s, e)
 			result.push(arrR.shift());
 		}
 	}
-	
+
 	return result;
 }

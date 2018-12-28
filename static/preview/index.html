@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>预览</title>
+    <script src="../create-html/index.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #preview-content{
+            border: 1px solid #eae8e8;
+            margin: 0 auto;
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div id="preview-page">
+        <div id="preview-content">
+            <script>
+                var box = document.getElementById('preview-content');
+
+                if(localStorage.huabanStr) {
+                    var dom = new CreateHtml(localStorage.huabanStr, 800, 'preview', {
+                        imgsLoaded: function() {
+
+                        }
+                    });
+
+                    box.appendChild(dom.init());
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

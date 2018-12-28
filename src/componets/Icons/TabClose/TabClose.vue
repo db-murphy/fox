@@ -1,5 +1,5 @@
 <template>
-	<i class="icon-tab-close" @click="_click"></i>
+	<i class="icon-tab-close"></i>
 </template>
 
 <script>

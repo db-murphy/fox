@@ -65,11 +65,29 @@
 						}else if(resize.hasClass('rb')) {
 							resizeRB(_this);
 						}
+
+						_this.$store.dispatch('updateLineList', {
+							mId: _this.getModulesById.id,
+							newVal: {
+								top: parseInt(_this.getModulesById.top, 10),
+								left: parseInt(_this.getModulesById.left, 10)
+							}
+						});
 					}
 				}
 
 				function _up() {
+					let mdule = _this.getModulesById;
+					
+					if(mdule) {
+						if(parseInt(mdule.left, 10) != _this.oldLeft || parseInt(mdule.top, 10) != _this.oldTop || parseInt(mdule.width, 10) != _this.oldWidth || parseInt(mdule.height, 10) != _this.oldHeight) {
+							// 发生了移动
+							_this.$store.dispatch('saveHistory');
+						}
+					}
+
 					_this.$store.dispatch('setCursor', _this.getCursorDefault);
+					_this.$store.dispatch('clearLine');
 					$(document).unbind('mousemove', _move);
 					$(document).unbind('mouseup', _up);
 				}
@@ -111,7 +129,7 @@
 		},
 
 		components: {
-			
+
 	    },
 
 	    mounted() {
@@ -144,7 +162,7 @@
 			if(newWidth <= _this.getModuleMinWidth) {
 				newWidth = _this.getModuleMinWidth;
 			}
-		}		
+		}
 
 		setVal(_this, {
 			left: thisModule.left,
@@ -288,10 +306,10 @@
 		_this.$store.dispatch('setModuleById',{
 			mId: _this.moduleId,
 			newVal: {
-				left: newVal.left,
-				top: newVal.top,
-				width: newVal.width,
-				height: newVal.height
+				left: parseInt(newVal.left, 10),
+				top: parseInt(newVal.top, 10),
+				width: parseInt(newVal.width, 10),
+				height: parseInt(newVal.height, 10)
 			}
 		});
 	}

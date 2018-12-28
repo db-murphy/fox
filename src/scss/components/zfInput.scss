@@ -1,0 +1,39 @@
+.el-input.zf-input, .el-input.zf-input.is-disabled, .el-textarea.zf-input{
+	box-shadow: 0px 1px 0px #636363;
+	border-radius: 4px;
+
+	.el-input__inner, .el-textarea__inner, .el-input__inner.is-disabled, .el-textarea__inner.is-disabled{
+		border-radius: 4px;
+		padding: 3px 0 3px 6px;
+		@include box-sizing(border-box);
+		border: 1px solid #2d2d2d;
+		background-color: #4a4a4a;
+		color: #fff;
+		font-weight: lighter;
+		box-shadow: 0px 1px 1px #373737 inset;
+
+
+	}
+
+	.el-textarea__inner{
+		padding: 5px;
+		font-size: 12px;
+		color: #cacaca;
+	}
+
+	&.h200{
+		.el-input__inner, .el-textarea__inner, .el-input__inner.is-disabled, .el-textarea__inner.is-disabled{
+			height: 200px;
+		}
+	}
+
+	&.p10{
+		padding: 10px;
+	}
+
+	&.no-select{
+		.el-input__inner, .el-textarea__inner, .el-input__inner.is-disabled, .el-textarea__inner.is-disabled{
+			//user-select:none;
+		}
+	}
+}

@@ -3,7 +3,9 @@
 		<span class="line"></span>
 		<ul>
 			<li v-for="item in _allFiles" :fileid="item.id" :class="{active: item.id == getCurrentFileId}" @click="_click">
-				<TabClose @close.stop="_close"></TabClose>
+				<div class="close-wrap" @click.stop="_close">
+					<TabClose></TabClose>
+				</div>
 				<div class="inner">
 					<p>{{item.fileName}}</p>
 				</div>
@@ -20,7 +22,7 @@
 	export default {
 	    data() {
 	        return {
-	            
+
 	        }
 	    },
 
@@ -39,7 +41,10 @@
 				if(li.length) {
 					let id = li.attr('fileid');
 
-					this.$store.dispatch('setCurrentFileId', id);
+					$('input').trigger('blur');
+					setTimeout(()=>{
+						this.$store.dispatch('setCurrentFileId', id);
+					}, 20);
 				}
 			},
 
@@ -51,6 +56,7 @@
 					let id = li.attr('fileid');
 
 					this.$store.dispatch('deleteFile', id);
+					this.$store.dispatch('delHistory', id);
 				}
 			}
 		},
@@ -61,14 +67,14 @@
 
 	    watch: {
 	    	getAllFiles() {
-	    		
+
 	    	}
 	    },
 
 	    mounted() {
 	    	let _this = this;
 	    }
-	} 
+	}
 </script>
 
 <style lang='scss'>
@@ -79,7 +85,7 @@
 		background-color: #393939;
         border-bottom: 1px solid #282828;
         position: relative;
-        box-shadow: 0 2px 7px #000;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, .5);
         position: absolute;
         left: 0;
         right: 0;
@@ -116,6 +122,13 @@
 	}
 	.stage-tab-switch li.active{
 		background-color: #535353;
+	}
+	.stage-tab-switch li .close-wrap{
+		height: 100%;
+		width: 20px;
+		position: absolute;
+		left: 0px;
+		top: 0;
 	}
 	.stage-tab-switch li .icon-tab-close{
 		position: absolute;

@@ -3,6 +3,7 @@
 	    <el-option
 	      v-for="item in optionsPrivited"
 	      :label="item.label"
+	      :key="'a'"
 	      :value="item.value">
 	    </el-option>
 	</el-select>

@@ -285,7 +285,19 @@ function setTransformStyle(obj, offset) {
     obj.style[stylePrefix + 'Transform'] = getTranslate(x, y);
 }
 
-module.exports = {
+function timeTrans(timestamp){  
+    if(!timestamp) return ''; 
+    var time = new Date(timestamp);  
+    var y = time.getFullYear();  
+    var m = time.getMonth()+1;  
+    var d = time.getDate();  
+    var h = time.getHours();  
+    var mm = time.getMinutes();  
+    var s = time.getSeconds();  
+    return y+'-'+numToDuble(m)+'-'+numToDuble(d)+' '+numToDuble(h)+':'+numToDuble(mm)+':'+numToDuble(s);  
+}
+
+export default {
 	getDiscount: getDiscount,
 	formatPrice: formatPrice,
 	checkDiscount: checkDiscount,
@@ -299,5 +311,6 @@ module.exports = {
 	setTransitionStyle: setTransitionStyle,
 	setTransformStyle: setTransformStyle,
 	msTransform: msTransform,
-    timeForMs: timeForMs
+    timeForMs: timeForMs,
+    timeTrans: timeTrans
 }

@@ -18,6 +18,7 @@
 	import MapAreaWin from './MapAreaWin/MapAreaWin.vue';
 	import PictureWin from './PictureWin/PictureWin.vue';
 	import TickWin from './TickWin/TickWin.vue';
+	import SkuWin from './skuWin/skuWin.vue';
 	import StageWin from './StageWin/StageWin.vue';
 	import WinTab from './WinTabs/WinTab';
 
@@ -25,10 +26,12 @@
 		data() {
 			return {
 				winName: {
-					Picture: 'PictureWin',
+					PictureCustom: 'PictureWin',
 					MapArea: 'MapAreaWin',
-					Tick: 'TickWin'
-				}
+					Tick: 'TickWin',
+					Sku: 'SkuWin'
+				},
+				show: true
 			}
 		},
 
@@ -36,16 +39,24 @@
 			...mapGetters(['getCurrentModuleName', 'getCurrentModuleId', 'getCurrentFileId'])
 		},
 
+		methods: {
+			_clickHideBtn() {
+				this.show = !this.show;
+				this.$emit('winTaggle', this.show);
+			}
+		},
+
 		components: {
 			MapAreaWin,
 			WinTab,
 			PictureWin,
 			StageWin,
-			TickWin
+			TickWin,
+			SkuWin
 	    },
 
 	    created() {
-	        
+
 	    }
 	}
 </script>
@@ -59,6 +70,8 @@
 		right: 0;
 		bottom: 0;
 		top: 0;
+		background-color: #535353;
+		z-index: 4;
 	}
 
 	.win-con{

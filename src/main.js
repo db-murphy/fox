@@ -1,12 +1,17 @@
 import Vue from 'vue';
-import ElementUI from 'element-ui';
-import App from './App.vue';
+import App from './App';
 import store from './store';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
 
+Vue.config.productionTip = false;
 Vue.use(ElementUI);
 
+
 new Vue({
-  el: '#app',
-  store,
-  render: h => h(App)
-})
+	el: '#app',
+	store,
+	template: '<App/>',
+	components: { App }
+});
+Vue.config.devtools = true;

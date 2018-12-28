@@ -12,7 +12,7 @@
 
 <script>
 	import $ from 'jquery';
-	import Picture from '../../Icons/Picture/Picture.vue';
+	import PictureCustom from '../../Icons/Picture/Picture.vue';
 	import Tick from '../../Icons/Tick/Tick.vue';
 	import MapArea from '../../Icons/MapArea/MapArea.vue';
 
@@ -23,7 +23,7 @@
 				modulesItems: [
 					{
 						name: 'picture',
-						tools: Picture,
+						tools: PictureCustom,
 						classObject: {
 	            			hover: false,
 	            			active: false
@@ -110,7 +110,7 @@
 			}
 		},
 		components: {
-			Picture,
+			PictureCustom,
 			MapArea,
 			Tick
 		},

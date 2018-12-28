@@ -1,8 +1,8 @@
 <template>
 	<div class="input-txt-block">
-		<label class="pb10">{{inputName}}</label>
+		<label class="pb10 ccacaca">{{inputName}}</label>
 		<div class="wrap">
-			<zf-input @zfblur="_blur" :inputVal="inputVal"></zf-input>
+			<zf-input @zfblur="_blur" @inputSubmit="_inputSubmit" :inputVal="inputVal" ref="zfInput"></zf-input>
 		</div>
 	</div>
 </template>
@@ -19,21 +19,27 @@
 	    	},
 
 	    	inputVal: {
-	    		type: String,
-	    		default: ''
+
 	    	}
 	    },
 
 		data() {
 			return {
-				
+
 			}
 		},
 
 		methods: {
 			_blur(val) {
 				this.$emit('zfblur', val);
-				//this.$store.dispatch('setPictureImgUrl', val);
+			},
+
+			setVal(val) {
+				this.$refs.zfInput.setVal(val);
+			},
+
+			_inputSubmit(val) {
+				this.$emit('inputSubmit', val);
 			}
 		},
 
@@ -50,7 +56,6 @@
 		label{
 			display: block;
 		    font-size: 11px;
-		    color: #fff;
 		    line-height: 1;
 		}
 	}

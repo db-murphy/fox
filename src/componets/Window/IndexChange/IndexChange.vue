@@ -1,7 +1,7 @@
 <template>
-	<div class="index-change pt20 clearfix" @mousedown="_mousedown" @mouseup="_mouseup" @click="_click">
+	<div class="index-change clearfix" @mousedown="_mousedown" @mouseup="_mouseup" @click="_click">
 		<div class="item pr20 up fl">
-			<label>向上调整</label>
+			<label class="ccacaca">向上调整</label>
 			<div class="btn fl" @mouseenter="_mouseenter" @mouseleave="_mouseleave" :class="{hover: classObj[0].isHover, active: classObj[0].isActive}">
 				<div class="inner">
 					<arrow :type="'up'" :isActive="classObj[0].isActive"></arrow>
@@ -10,7 +10,7 @@
 		</div>
 
 		<div class="item down fl">
-			<label>向下调整</label>
+			<label class="ccacaca">向下调整</label>
 			<div class="btn fl" @mouseenter="_mouseenter" @mouseleave="_mouseleave" :class="{hover: classObj[1].isHover, active: classObj[1].isActive}">
 				<div class="inner">
 					<arrow :type="'down'" :isActive="classObj[1].isActive"></arrow>
