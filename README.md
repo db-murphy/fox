@@ -1,4 +1,4 @@
-# 商家后台
+# 可视化搭建
 
 > A Vue.js project
 
@@ -17,6 +17,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-UI沟通群 5632663
-PMP http://pmp.jd.com/requirement/info/c97840fb1473433f
